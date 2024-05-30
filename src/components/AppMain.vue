@@ -18,8 +18,11 @@ export default {
 
 <template>
     <div class="container-fluid ">
-        <div class="row mx-5 py-3 ">
+        <div class="row mx-5 py-3 text-white">
+            <h2 v-if="store.isMovie" class="m-0 p-1 text-center bg-dark">FILM</h2>
             <CardFilm v-for="movie in store.movies" :movie="movie" />
+            <h2 v-if="store.isSeries" class="m-0 p-1 text-center bg-dark">SERIE TV</h2>
+            <CardFilm v-for="serie in store.tvSeries" :movie="serie" />
         </div>
     </div>
 

@@ -22,10 +22,10 @@ export default {
     <div class="col-2 p-2 my-2">
         <div class="card bg-dark border border-2 text-white position-relative">
 
-            <div class="img-card w-100 h-100 position-relative z-2">
+            <!-- <div class="img-card w-100 h-100 position-relative z-2">
                 <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://picsum.photos/300/300'"
                     alt="" class="w-100 h-100 rounded">
-            </div>
+            </div> -->
 
             <div class="p-2 h-100 rounded position-absolute z-1">
                 <div>
