@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: "CardFilm",
     props: {
         movie: Object
     },
@@ -22,8 +23,8 @@ export default {
         <div class="card bg-dark border border-2 text-white position-relative">
 
             <div class="img-card w-100 h-100 position-relative z-2">
-                <img :src="'https://image.tmdb.org/t/p/original' + movie.poster_path" alt=""
-                    class="w-100 h-100 rounded">
+                <img :src="movie.poster_path ? 'https://image.tmdb.org/t/p/original' + movie.poster_path : 'https://picsum.photos/300/300'"
+                    alt="" class="w-100 h-100 rounded">
             </div>
 
             <div class="p-2 h-100 rounded position-absolute z-1">
@@ -39,7 +40,9 @@ export default {
 
                 <div>
                     <span class="fw-bold">Lingua: </span>
-                    <span>{{ movie.original_language }}</span>
+                    <span class="me-2">{{ movie.original_language }}</span>
+                    <img :src="`https://flagcdn.com/16x12/${movie.original_language}.png`" alt="">
+
                 </div>
 
                 <div>

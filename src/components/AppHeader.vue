@@ -11,13 +11,23 @@ export default {
     }
   },
   methods: {
+    // chiamo film in base alla ricerca in input
     findMovies() {
+      // azzero la lista di movie in caso in cui fosse già stata fatta una chiamata in precedenza
       store.movies = []
+      // assegno al parametro query dell'api il valore dell'input
       store.requestListMovie.params.query = store.inputArea
       axios
         .request(store.requestListMovie)
         .then(function (response) {
+          // pusho i film
           store.movies = response.data.results
+          //  i film con il valore "en" su original_language le trasformo in "gb-eng",sennò non mi vengono riconosciute dal link per le bandiere
+          response.data.results.forEach(element => {
+            if (element.original_language == "en") {
+              element.original_language = "gb-eng";
+            }
+          });
         })
         .catch(function (error) {
           console.error(error);

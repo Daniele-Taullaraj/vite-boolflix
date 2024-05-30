@@ -7,12 +7,9 @@ const iMieiDati = reactive({
 
     requestListMovie: {
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/search/multi',
+        url: 'https://api.themoviedb.org/3/search/movie',
         params: {
             query: "",
-            include_adult: "false",
-            language: "en-US",
-            page: "1",
         },
         headers: {
             accept: 'application/json',
