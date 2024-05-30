@@ -11,6 +11,19 @@ export default {
     }
   },
   methods: {
+    convertLanguage(element) {
+      if (element.original_language == "en") {
+        element.original_language = "gb-eng";
+      } else if (element.original_language == "ja") {
+        element.original_language = "jp";
+      }
+    },
+
+    convertVote(element) {
+      element.vote_average = Math.ceil(element.vote_average / 2)
+    },
+
+
     // chiamo film in base alla ricerca in input
     findMovies() {
       // variabile booleana utilizzata per far comparire l'h2 film solo quando questa è vera
@@ -22,14 +35,11 @@ export default {
 
       axios
         .request(store.requestListMovie)
-        .then(function (response) {
-          //  i film con il valore "en" su original_language le trasformo in "gb-eng",sennò non mi vengono riconosciute dal link per le bandiere
+        .then((response) => {
+          // check lingua
           response.data.results.forEach(element => {
-            if (element.original_language == "en") {
-              element.original_language = "gb-eng";
-            } else if (element.original_language == "ja") {
-              element.original_language = "jp";
-            }
+            this.convertLanguage(element);
+            this.convertVote(element)
           });
           // pusho i film
           store.movies = response.data.results
@@ -39,7 +49,6 @@ export default {
           } else {
             store.isMovie = false;
           }
-          console.log(store.movies)
         })
         .catch(function (error) {
           console.error(error);
@@ -54,13 +63,10 @@ export default {
 
       axios
         .request(store.requestListTv)
-        .then(function (response) {
+        .then((response) => {
           response.data.results.forEach(element => {
-            if (element.original_language == "en") {
-              element.original_language = "gb-eng";
-            } else if (element.original_language == "ja") {
-              element.original_language = "jp";
-            }
+            this.convertLanguage(element);
+            this.convertVote(element)
           });
           store.tvSeries = response.data.results
           if (store.tvSeries.length > 0) {
@@ -68,8 +74,6 @@ export default {
           } else {
             store.isSeries = false;
           }
-          console.log(store.tvSeries)
-
         })
         .catch(function (error) {
           console.error(error);

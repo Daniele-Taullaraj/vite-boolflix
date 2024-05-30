@@ -46,8 +46,9 @@ export default {
                 </div>
 
                 <div>
-                    <span class="fw-bold">Voto: </span>
-                    <span>{{ movie.vote_average }} </span>
+                    <span class="fw-bold">Voto : </span>
+                    <span class="me-2">{{ movie.vote_average }} </span>
+                    <i v-for="star in movie.vote_average" class="fa-solid fa-star text-warning"></i>
                 </div>
             </div>
 
